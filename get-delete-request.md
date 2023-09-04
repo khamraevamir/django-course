@@ -24,7 +24,43 @@ urlpatterns = [
 ]
 ```
 
-3. В директории приложения **app/templates** создайте **course-detail.html** и пропишите следующее
+3. В директории приложения **app/templates/index.html** пропишите следующее
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Courses</h1>
+<hr>
+<small>{{date}}</small>
+
+<div class="row mt-5">
+
+    {% for course in courses %}
+    <div class="col-sm-6">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">{{course.title}}</h5>
+                <p class="card-text">
+                    {% if course.content|length > 100 %}
+                        {{ course.content|slice:":100" }}...
+                    {% else %}
+                        {{ course.content }}
+                    {% endif %}
+                </p>
+                <a href="{% url 'course-detail' course_id=course.id %}" class="btn btn-primary">Посмотреть</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}
+```
+
+4. В директории приложения **app/templates** создайте **course-detail.html** и пропишите следующее
 
 ```html
 {% extends 'base.html' %}
