@@ -163,7 +163,7 @@ from . import views
 from django.urls import path
 
 urlpatterns = [
-    path('course-create/', views.course_create, name='course-create')
-    path('course-edit/<int:course_id>/', views.course_edit, name='course-edit'),
+    path('course-create/', views.course_create, name='course-create'),
+    path('course-edit/<int:course_id>/', views.course_edit, name='course-edit')
 ]
 ```
